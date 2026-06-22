@@ -1,0 +1,33 @@
+flowchart TD
+
+A[Customer Selects<br/>Refund Status]
+
+--> B[Retrieve selected_order_id<br/>from Session Entity]
+
+--> C[Invoke RefundTrackerTool]
+
+--> D{Tool Response Received?}
+
+D -- No --> E[Inform Customer Service is Temporarily Unavailable]
+
+E --> F[Offer Human Agent Escalation]
+
+D -- Yes --> G{Refund Record Found?}
+
+G -- No --> H[Inform Customer No Refund Request Exists]
+
+H --> I[Return to Service Menu]
+
+G -- Yes --> J[Retrieve Refund Details]
+
+J --> K[Retrieve Refund Status]
+
+K --> L[Retrieve Refund Amount]
+
+L --> M[Generate Customer-Friendly Summary]
+
+M --> N[Present Refund Information]
+
+N --> O[Would You Like Help With Anything Else?]
+
+O --> P[Return to Service Menu]
