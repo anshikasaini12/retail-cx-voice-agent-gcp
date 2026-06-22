@@ -1,0 +1,41 @@
+flowchart TD
+
+A[Customer Selects<br/>Order Cancellation]
+
+--> B[Retrieve selected_order_id<br/>from Session Entity]
+
+--> C[Invoke CancellationTool]
+
+--> D{Cancellation Eligible?}
+
+D -- No --> E[Inform Customer Order Cannot Be Cancelled]
+
+E --> F[Provide Reason<br/>Already Shipped / Delivered / Already Cancelled]
+
+F --> G[Return to Service Menu]
+
+D -- Yes --> H[Present Cancellation Details]
+
+H --> I[Ask Customer for Confirmation]
+
+I --> J{Customer Confirms?}
+
+J -- No --> K[Cancel Cancellation Request]
+
+K --> L[Return to Service Menu]
+
+J -- Yes --> M[Execute Cancellation]
+
+M --> N{Cancellation Successful?}
+
+N -- No --> O[Inform Customer Cancellation Failed]
+
+O --> P[Offer Human Agent Escalation]
+
+N -- Yes --> Q[Generate Cancellation Confirmation]
+
+Q --> R[Present Cancellation Details]
+
+R --> S[Inform Customer Refund Timeline]
+
+S --> T[Return to Service Menu]
