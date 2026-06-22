@@ -68,7 +68,7 @@ H -- Yes --> C
 
 H -- No --> I[Escalate to Human Agent]
 
-E -- Yes --> J[Fetch Orders Associated with Phone Number]
+E -- Yes --> J[Fetch Orders Associated <br/> with Phone Number]
 
 J --> K[Present Available Orders]
 
@@ -76,11 +76,11 @@ K --> L[Customer Selects Order ID]
 
 L --> M{Valid Order ID?}
 
-M -- No --> N[Ask Customer to Re-select Order]
+M -- No --> N[Ask Customer to <br/>Re-select Order]
 
 N --> L
 
-M -- Yes --> O[Store selected_order_id as Session Entity]
+M -- Yes --> O[Store selected_order_id <br/>as Session Entity]
 
 O --> P[Present Service Menu]
 
@@ -122,19 +122,19 @@ A[Customer Selects<br/>Check Order Status]
 
 --> D{Tool Response Received?}
 
-D -- No --> E[Inform Customer Service is Temporarily Unavailable]
+D -- No --> E[Inform Customer Service is <br/> Temporarily Unavailable]
 
-E --> F[Offer Human Agent Escalation]
+E --> F[Offer Human Agent <br/>Escalation]
 
 D -- Yes --> G[Fetch Order Details]
 
 G --> H[Fetch Delivery Status]
 
-H --> I[Generate Customer-Friendly Summary]
+H --> I[Generate Customer-Friendly <br/>Summary]
 
 I --> J[Present Status to Customer]
 
-J --> K[Would You Like Help With Anything Else?]
+J --> K[Would You Like Help <br/>With Anything Else?]
 
 K --> L[Return to Service Menu]
 ```
@@ -162,65 +162,22 @@ Allow customers to modify eligible orders.
 Order details are updated successfully after customer confirmation.
 
 ```mermaid
-flowchart TD
-
-A[Customer Selects<br/>Return / Exchange]
-
---> B[Retrieve selected_order_id<br/>from Session Entity]
-
---> C[Invoke ReturnEligibilityTool]
-
---> D{Eligible for Return/Exchange?}
-
-D -- No --> E[Inform Customer Item is Not Eligible]
-
-E --> F[Return to Service Menu]
-
-D -- Yes --> G[Ask Customer:<br/>Return or Exchange?]
-
-%% RETURN FLOW
-
-G --> H[Return]
-
-H --> I[Invoke ReturnTool]
-
-I --> J[Invoke SlotBookingTool]
-
-J --> K[Schedule Pickup Slot]
-
-K --> L[Generate Return Confirmation]
-
-L --> M[Present Return Details]
-
-M --> N[Return to Service Menu]
-
-%% EXCHANGE FLOW
-
-G --> O[Exchange]
-
-O --> P[Capture Exchange Preference]
-
-P --> Q[Invoke ExchangeTool]
-
-Q --> R[Invoke RecommendationTool]
-
-R --> S[Present Alternative Products<br/>Upsell / Cross-Sell]
-
-S --> T{Customer Selects Product?}
-
-T -- Yes --> U[Confirm Replacement Item]
-
-T -- No --> U
-
-U --> V[Invoke SlotBookingTool]
-
-V --> W[Schedule Pickup / Delivery Slot]
-
-W --> X[Generate Exchange Confirmation]
-
-X --> Y[Present Exchange Details]
-
-Y --> Z[Return to Service Menu]
+flowchart TB
+    A["Customer Selects<br>Order Modification"] --> B["Retrieve selected_order_id<br>from Session Entity"]
+    G["Capture New Details"] --> H["Invoke <br/>OrderModificationTool"]
+    L["Present Requested Changes"] --> M["Ask for Confirmation"]
+    M --> N{"Customer Confirms?"}
+    N -- No --> O["Cancel Modification Request"]
+    O --> K["Return to Service Menu"]
+    N -- Yes --> P["Execute Modification"]
+    P --> Q{"Execution Successful?"}
+    Q -- No --> R["Inform Customer of Failure"]
+    R --> S["Offer Human Agent <br/>Escalation"]
+    Q -- Yes --> T["Generate Confirmation <br/> Summary"]
+    T --> U["Present Updated Order <br/>Details"]
+    U --> V["Return to Service Menu"]
+    B --> G
+    H --> L
 ```
 
 ---
@@ -250,11 +207,11 @@ A[Customer Selects<br/>Return / Exchange]
 
 --> B[Retrieve selected_order_id<br/>from Session Entity]
 
---> C[Invoke ReturnEligibilityTool]
+--> C[Invoke <br/>ReturnEligibilityTool]
 
---> D{Eligible for Return/Exchange?}
+--> D{Eligible for <br/>Return/Exchange?}
 
-D -- No --> E[Inform Customer Item is Not Eligible]
+D -- No --> E[Inform Customer <br/>Item is Not Eligible]
 
 E --> F[Return to Service Menu]
 
@@ -270,7 +227,7 @@ I --> J[Invoke SlotBookingTool]
 
 J --> K[Schedule Pickup Slot]
 
-K --> L[Generate Return Confirmation]
+K --> L[Generate Return <br/>Confirmation]
 
 L --> M[Present Return Details]
 
@@ -280,11 +237,11 @@ M --> N[Return to Service Menu]
 
 G --> O[Exchange]
 
-O --> P[Capture Exchange Preference]
+O --> P[Capture Exchange <br/> Preference]
 
 P --> Q[Invoke ExchangeTool]
 
-Q --> R[Invoke RecommendationTool]
+Q --> R[Invoke <br/>RecommendationTool]
 
 R --> S[Present Alternative Products<br/>Upsell / Cross-Sell]
 
@@ -296,9 +253,9 @@ T -- No --> U
 
 U --> V[Invoke SlotBookingTool]
 
-V --> W[Schedule Pickup / Delivery Slot]
+V --> W[Schedule Pickup / Delivery <br/> Slot]
 
-W --> X[Generate Exchange Confirmation]
+W --> X[Generate Exchange <br/>Confirmation]
 
 X --> Y[Present Exchange Details]
 
@@ -332,13 +289,13 @@ A[Customer Selects<br/>Refund Status]
 
 --> D{Tool Response Received?}
 
-D -- No --> E[Inform Customer Service is Temporarily Unavailable]
+D -- No --> E[Inform Customer Service is <br/> Temporarily Unavailable]
 
-E --> F[Offer Human Agent Escalation]
+E --> F[Offer Human Agent <br/>Escalation]
 
 D -- Yes --> G{Refund Record Found?}
 
-G -- No --> H[Inform Customer No Refund Request Exists]
+G -- No --> H[Inform Customer No <br/>Refund Request Exists]
 
 H --> I[Return to Service Menu]
 
@@ -348,11 +305,11 @@ J --> K[Retrieve Refund Status]
 
 K --> L[Retrieve Refund Amount]
 
-L --> M[Generate Customer-Friendly Summary]
+L --> M[Generate Customer-Friendly <br/>Summary]
 
 M --> N[Present Refund Information]
 
-N --> O[Would You Like Help With Anything Else?]
+N --> O[Would You Like Help <br/> With Anything Else?]
 
 O --> P[Return to Service Menu]
 ```
@@ -384,19 +341,19 @@ A[Customer Selects<br/>Order Cancellation]
 
 --> D{Cancellation Eligible?}
 
-D -- No --> E[Inform Customer Order Cannot Be Cancelled]
+D -- No --> E[Inform Customer Order <br/>Cannot Be Cancelled]
 
-E --> F[Provide Reason<br/>Already Shipped / Delivered / Already Cancelled]
+E --> F[Provide Reason<br/>Already Shipped / Delivered <br/> / Already Cancelled]
 
 F --> G[Return to Service Menu]
 
-D -- Yes --> H[Present Cancellation Details]
+D -- Yes --> H[Present Cancellation <br/> Details]
 
-H --> I[Ask Customer for Confirmation]
+H --> I[Ask Customer for <br/> Confirmation]
 
 I --> J{Customer Confirms?}
 
-J -- No --> K[Cancel Cancellation Request]
+J -- No --> K[Cancel Cancellation <br/> Request]
 
 K --> L[Return to Service Menu]
 
@@ -404,15 +361,15 @@ J -- Yes --> M[Execute Cancellation]
 
 M --> N{Cancellation Successful?}
 
-N -- No --> O[Inform Customer Cancellation Failed]
+N -- No --> O[Inform Customer <br/> Cancellation Failed]
 
-O --> P[Offer Human Agent Escalation]
+O --> P[Offer Human Agent <br/> Escalation]
 
-N -- Yes --> Q[Generate Cancellation Confirmation]
+N -- Yes --> Q[Generate Cancellation <br/> Confirmation]
 
-Q --> R[Present Cancellation Details]
+Q --> R[Present Cancellation <br/>Details]
 
-R --> S[Inform Customer Refund Timeline]
+R --> S[Inform Customer <br/> Refund Timeline]
 
 S --> T[Return to Service Menu]
 ```
