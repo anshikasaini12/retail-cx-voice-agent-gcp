@@ -1,0 +1,59 @@
+flowchart TD
+
+A[Customer Selects<br/>Return / Exchange]
+
+--> B[Retrieve selected_order_id<br/>from Session Entity]
+
+--> C[Invoke ReturnEligibilityTool]
+
+--> D{Eligible for Return/Exchange?}
+
+D -- No --> E[Inform Customer Item is Not Eligible]
+
+E --> F[Return to Service Menu]
+
+D -- Yes --> G[Ask Customer:<br/>Return or Exchange?]
+
+%% RETURN FLOW
+
+G --> H[Return]
+
+H --> I[Invoke ReturnTool]
+
+I --> J[Invoke SlotBookingTool]
+
+J --> K[Schedule Pickup Slot]
+
+K --> L[Generate Return Confirmation]
+
+L --> M[Present Return Details]
+
+M --> N[Return to Service Menu]
+
+%% EXCHANGE FLOW
+
+G --> O[Exchange]
+
+O --> P[Capture Exchange Preference]
+
+P --> Q[Invoke ExchangeTool]
+
+Q --> R[Invoke RecommendationTool]
+
+R --> S[Present Alternative Products<br/>Upsell / Cross-Sell]
+
+S --> T{Customer Selects Product?}
+
+T -- Yes --> U[Confirm Replacement Item]
+
+T -- No --> U
+
+U --> V[Invoke SlotBookingTool]
+
+V --> W[Schedule Pickup / Delivery Slot]
+
+W --> X[Generate Exchange Confirmation]
+
+X --> Y[Present Exchange Details]
+
+Y --> Z[Return to Service Menu]
