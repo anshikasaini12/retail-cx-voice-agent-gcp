@@ -1,0 +1,47 @@
+flowchart TD
+
+A([Customer Initiates Voice Call])
+
+--> B[Greeting Agent<br/>Welcome Customer]
+
+--> C[Request Phone Number]
+
+--> D[Request PIN]
+
+--> E{Authentication Successful?}
+
+E -- No --> F[Authentication Failed]
+
+F --> G[Allow Retry]
+
+G --> H{Attempts < 3?}
+
+H -- Yes --> C
+
+H -- No --> I[Escalate to Human Agent]
+
+E -- Yes --> J[Fetch Orders Associated with Phone Number]
+
+J --> K[Present Available Orders]
+
+K --> L[Customer Selects Order ID]
+
+L --> M{Valid Order ID?}
+
+M -- No --> N[Ask Customer to Re-select Order]
+
+N --> L
+
+M -- Yes --> O[Store selected_order_id as Session Entity]
+
+O --> P[Present Service Menu]
+
+P --> Q[Check Order Status]
+
+P --> R[Order Modification]
+
+P --> S[Return / Exchange]
+
+P --> T[Refund Status]
+
+P --> U[Order Cancellation]
