@@ -10,7 +10,7 @@ A[Customer Selects<br/>Order Cancellation]
 
 D -- No --> E[Inform Customer <br/>Order Cannot Be Cancelled]
 
-E --> F[Provide Reason<br/>Already Shipped / Delivered / <br/>Already Cancelled]
+E --> F[Provide Reason<br/>Already Shipped / <br/> Delivered / Already Cancelled]
 
 F --> G[Return to Service Menu]
 
@@ -28,7 +28,7 @@ J -- Yes --> M[Execute Cancellation]
 
 M --> N{Cancellation Successful?}
 
-N -- No --> O[Inform Customer Cancellation Failed]
+N -- No --> O[Inform Customer <br/> Cancellation Failed]
 
 O --> P[Offer Human Agent Escalation]
 
