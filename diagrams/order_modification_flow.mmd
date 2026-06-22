@@ -1,6 +1,6 @@
 flowchart TB
     A["Customer Selects<br>Order Modification"] --> B["Retrieve selected_order_id<br>from Session Entity"]
-    G["Capture New Details"] --> H["Invoke OrderModificationTool"]
+    G["Capture New Details"] --> H["Invoke <br/> OrderModificationTool"]
     L["Present Requested Changes"] --> M["Ask for Confirmation"]
     M --> N{"Customer Confirms?"}
     N -- No --> O["Cancel Modification Request"]
