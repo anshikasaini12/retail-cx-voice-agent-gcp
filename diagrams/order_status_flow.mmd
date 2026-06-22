@@ -1,0 +1,25 @@
+flowchart TD
+
+A[Customer Selects<br/>Check Order Status]
+
+--> B[Retrieve selected_order_id<br/>from Session Entity]
+
+--> C[Invoke OrderLookupTool]
+
+--> D{Tool Response Received?}
+
+D -- No --> E[Inform Customer Service is Temporarily Unavailable]
+
+E --> F[Offer Human Agent Escalation]
+
+D -- Yes --> G[Fetch Order Details]
+
+G --> H[Fetch Delivery Status]
+
+H --> I[Generate Customer-Friendly Summary]
+
+I --> J[Present Status to Customer]
+
+J --> K[Would You Like Help With Anything Else?]
+
+K --> L[Return to Service Menu]
